@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>WELCOME TO E-PAYMENTS!</title>
+        
+    </h:head>
+    <br/>
+    <h:body>
+        Please fill out the registration form below 
+        <!-- Firstname, Lastname, DOB, Email, username, password, confirm PW, currency, back_mainmenu(index) -->
+        <h:form id="registration_form" title="Registration Form">
+            
+            <h:outputText value="First Name"></h:outputText>
+            First Name: <h:inputText id="first_name" label="First_name" maxlength="10"
+                                    required="true" requiredMessage="First name is required for registration"
+                                    value="#{registrationBean.firstname}"></h:inputText>
+            <br/>
+            <h:outputText value="Last Name"></h:outputText>
+            Last Name: <h:inputText id="last_name" label="Last Name" maxlength="10"
+                                    required="true" requiredMessage="Last/family Name is required for registration"
+                                    value="#{registrationBean.lastname}"></h:inputText>
+            <br/>
+            
+            <h:outputText value="Date of Birth"></h:outputText>
+            Date of Birth: <h:inputText id="Date_of_birth" required="true" requiredMessage="Date of Birth required for registration" 
+                                        value="#{registrationBean.dob}"/>
+                                <f:converter converterId ="multidateConverter"/>
+                                    <f:attribute name="pattern1" value="dd/MM/yyyy"/>
+                                    <f:attribute name="pattern2" value="dd-MM-yyyy"/>
+                           <h:inputText/>
+            <br/>
+            
+            <h:outputText value="Email"></h:outputText>
+            Email: <h:inputText id="email" required="true" requiredMessage="Email is required for registration"
+                                value="#{registrationBean.emai}">
+                                <f:validateRegex pattern="[A-Za-z0-9+_.-]+@(.+)$"></f:validateRegex>
+                   </h:inputText>
+            <br/>
+            
+            <h:outputText value="Username"></h:outputText>
+            Username: <h:inputText id="username" required="true"
+                                   requiredMessage="username is required for registration"
+                                   label="email"  value="#{registrationBean.username}">
+                     </h:inputText>
+           <br/>
+           
+           <h:outputText value="Password"></h:outputText>
+            Password: <h:inputSecret id="password" required="true"
+                                   requiredMessage="Password is required for registration"
+                                   value="#{registrationBean.password}">
+                    </h:inputSecret>
+                     
+           <br/>
+          
+           <h:outputText value="Confirm Password"></h:outputText>
+           Confirm Password: <h:inputSecret id="confirm_password" required="true"
+                                          requiredMessage="Please enter your password again for confirmation"
+                                          value="#{registrationBean.confirmPassword}">
+                             </h:inputSecret>                  
+            <br/>                       
+           
+            <h:outputText value="Select the Currency you want your account in"></h:outputText>
+            Currency: <h:selectOneMenu id="currency" value="#{registrationBean.currency}">
+                <f:selectItem itemValue="GBP" itemLabel="gbp"></f:selectItem>
+                <f:selectItem itemValue="USD" itemLabel="usd"></f:selectItem>
+                <f:selectItem itemValue="EURO" itemLabel="euro"></f:selectItem>
+            </h:selectOneMenu>                    
+           <br/>
+           <br/>
+           
+            <h:outputText value="Back to Main menu"></h:outputText>
+            <h:button id="back_button" value="Register" outcome="index.xhtml"></h:button>
+            <br/>
+            
+            <h:outputText value="Submit and Register"></h:outputText>
+            <h:commandButton id="submit_button" value="Submit" action="#{registration.register}" ></h:commandButton>
+            
+            <h:outputText value="Reset"></h:outputText>     
+            <h:commandButton id="reset_button" value="Clear Form" action="#{registrationBean.register}"></h:commandButton>
+    
+        </h:form>
+    </h:body> 
+</html>
+

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Hello Admin: Below is a data for all User Transactions</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Registered E-Payements user's transactions</h1>
+        
+        <h:dataTable value="#{adminTransactionView.transactions}" var="transaction">
+            <h:column>    				
+                <f:facet name="header">Transaction Type</f:facet>    				
+                    #{transaction.transaction_type}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Amount</f:facet>
+                    #{adminTransactionView.format(transaction.amount, transaction.sender.currency)}
+
+            </h:column>
+            
+             <h:column>
+                <f:facet name="header">Sender Email Address</f:facet>
+                    #{transaction.sender.email}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Receiver Email Address</f:facet>
+                    #{transaction.recipient.email}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Received Amount </f:facet>
+                    #{adminTransactionView.format(transaction.convertedAmount, transaction.recipient.currency)}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                    #{transaction.transaction_status}
+            </h:column>
+            
+        </h:dataTable>
+        
+        <h:form>
+            <h:button value = "Back" outcome="adminHome"></h:button>
+        </h:form>
+        
+    </h:body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Hello Admin: Below is a search table for User's Transaction</title>
+    </h:head>
+    <h:body>
+        
+         <h:form>
+            <h:outputText value="Username:"></h:outputText>
+            <h:inputText label="username" value="#{adminUserTransactionView.username}" required="true" requiredMessage="Transaction Searched require a username"></h:inputText>
+            <h:commandButton type="submit" value="ViewTransactins.xhtml" action="#{adminUserTransactionView.transaction_search()}"></h:commandButton>
+            <h:button value = "Back" outcome="viewTransactions"></h:button>
+            <h:commandButton type="reset" value="Clear"/>
+            <br></br>
+        </h:form>
+        
+        <h:dataTable value="#{adminUserTransactionView.transactions}" var="transaction">
+            
+            <h:column>    				
+                <f:facet name="header">Transaction Type</f:facet>    				
+                    #{transaction.transaction_type}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Amount</f:facet>
+                    #{adminUserTransactionView.format(transaction.amount, transaction.sender.currency)}            
+            </h:column>
+            
+             <h:column>
+                <f:facet name="header">Sender Email Address</f:facet>
+                    #{transaction.sender.email}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Recipient Email</f:facet>
+                    #{transaction.recipient.email}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Received Amount</f:facet>
+                   #{adminUserTransactionView.format(transaction.convertedAmount, transaction.recipient.currency)}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Transaction Status</f:facet>
+                    #{transaction.transaction_status}
+            </h:column>
+        </h:dataTable>
+        
+    </h:body>
+</html>
+

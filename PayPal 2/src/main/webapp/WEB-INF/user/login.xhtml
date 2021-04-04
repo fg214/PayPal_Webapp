@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>WELCOME TO E-PAYMENT</title>
+    </h:head>
+    
+     <!-- FORM[Username, Password, Back_button, Reset_button]-->
+    
+    <h:body>
+        Enter your Login details below: 
+        <h:form>
+            <h:outputText value="Username"></h:outputText> 
+            <h:inputText label="username" required="true" value="#{loginBean.username}" requiredMessage="Username is needed for Login"></h:inputText>
+            <br/>
+            
+            <h:outputText value="Password"></h:outputText>
+            <h:inputText label="password" required="true" value="#{loginBean.password}" requiredMessage="Password is needed for Login"></h:inputText>
+            <br/>
+            
+            <h:outputText value="Login" </h:outputText>
+            <h:commandButton id="login_button" action="#{loginBean.login}" ></h:commandButton>
+            
+            <br/>
+            <h:outputText value="Back to Main Menu"></h:outputText>
+            <h:button id="back_button" outcome="index.xhtml"></h:button>
+            
+            <h:outputText value="Reset"></h:outputText>
+            <h:commandButton id="reset_button" type= "reset"></h:commandButton>
+                        
+        </h:form>
+    </h:body>
+</html>
+
